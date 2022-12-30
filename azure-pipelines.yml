@@ -7,6 +7,7 @@ trigger:
 - main
 
 variables:
+  vmImage: 'ubuntu-latest'
   location: 'Central US'
   azureSubscription: 'mxi-test-sc'
   resourceGroupName: 'mxi-cicd'
