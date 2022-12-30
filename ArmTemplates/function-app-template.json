@@ -20,10 +20,10 @@
     },
     "functions": [],
     "variables": {
-        "appInsightsName": "[concat(parameters('appInsightsName'),parameters('envName'),resourceGroup().location)]",
+        "appInsightsName": "[concat(parameters('appInsightsName'),parameters('envName'))]",
         "functionStorageAccountName": "[concat(parameters('functionStorageAccountName'),parameters('envName'))]",
-        "appServicePlanName": "[concat(parameters('appServicePlanName'),parameters('envName'),resourceGroup().location)]",
-        "sitesFunctionAppName": "[concat(parameters('sitesFunctionAppName'),parameters('envName'),resourceGroup().location)]"
+        "appServicePlanName": "[concat(parameters('appServicePlanName'),parameters('envName'))]",
+        "sitesFunctionAppName": "[concat(parameters('sitesFunctionAppName'),parameters('envName'))]"
     },
     "resources": [
         {

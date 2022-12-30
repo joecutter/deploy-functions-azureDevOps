@@ -98,14 +98,14 @@ stages:
           artifact: app
         
         # Create or update Azure Function App Service
-        - task: AzureResourceGroupDeployment@2
-          displayName: 'Azure Deployment:Create Azure Function App Service'
-          inputs:
-            azureSubscription: '$(azureSubscription)'
-            resourceGroupName: '$(resourceGroupName)'
-            location: $(location)
-            csmFile: '$(Pipeline.Workspace)/**/function-app-template.json'
-            overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
+        # - task: AzureResourceGroupDeployment@2
+        #   displayName: 'Azure Deployment:Create Azure Function App Service'
+        #   inputs:
+        #     azureSubscription: '$(azureSubscription)'
+        #     resourceGroupName: '$(resourceGroupName)'
+        #     location: $(location)
+        #     csmFile: '$(Pipeline.Workspace)/**/function-app-template.json'
+        #     overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
 
         # Deploy Function App Service          
         - task: AzureFunctionApp@1
