@@ -63,14 +63,22 @@ stages:
           publishWebProjects: false
           projects: '**/*.csproj'
           arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish_output'
-  
+
+      # Copy ARM templates
+      - task: CopyFiles@2
+        displayName: 'Copy ARM templates'
+        inputs:
+          SourceFolder: ArmTemplates
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+            
       #Publish build artifacts
       - task: PublishBuildArtifacts@1
         displayName: Publish build artifacts
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/publish_output'
           ArtifactName: 'app'
-          publishLocation: 'Container'         
+          publishLocation: 'Container'  
+
         
 # Release Stage
 - stage: Staging
