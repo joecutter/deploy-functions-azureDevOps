@@ -11,7 +11,7 @@ variables:
   location: 'Central US'
   azureSubscription: 'MxI-subscription'
   resourceGroupName: 'mxi-cicd'
-  sitesFunctionAppName: 'MxI-ci-cd-poc'
+  sitesFunctionAppName: 'mxipoc'
   appServicePlanName: 'mxipocappserviceplan'
   appInsightsName: 'mxipocappinsight'
   functionStorageAccountName: 'mxipocstorage$(Build.BuildId)'
