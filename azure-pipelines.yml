@@ -7,6 +7,7 @@ trigger:
 - main
 
 variables:
+  vmImage: 'ubuntu-latest'
   location: 'Central US'
   azureSubscription: 'MxI-subscription'
   resourceGroupName: 'mxi-cicd'
@@ -61,15 +62,23 @@ stages:
           command: 'publish'
           publishWebProjects: false
           projects: '**/*.csproj'
-          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish_output'
-  
+          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+      # Copy ARM templates
+      - task: CopyFiles@2
+        displayName: 'Copy ARM templates'
+        inputs:
+          SourceFolder: ArmTemplate
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
       #Publish build artifacts
       - task: PublishBuildArtifacts@1
         displayName: Publish build artifacts
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)/publish_output'
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'app'
-          publishLocation: 'Container'         
+          publishLocation: 'Container'  
+
         
 # Release Stage
 - stage: Staging
@@ -99,11 +108,11 @@ stages:
             overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
 
         # Deploy Function App Service          
-       - task: AzureFunctionApp@1
-         inputs:
-           azureSubscription: '$(azureSubscription)'
-           resourceGroupName: '$(resourceGroupName)'
-           appType: 'functionAppLinux'
-           appName: '$(sitesFunctionAppName)'
-           package: '$(System.DefaultWorkingDirectory)/_joecutter.deploy-functions-azureDevOps/app'
-           runtimeStack: 'DOTNET|2.2'      
+        - task: AzureFunctionApp@1
+          inputs:
+            azureSubscription: '$(azureSubscription)'
+            resourceGroupName: '$(resourceGroupName)'
+            appType: 'functionApp'
+            appName: '$(sitesFunctionAppName)'
+            package: '$(System.DefaultWorkingDirectory)/_joecutter.deploy-functions-azureDevOps/app'
+            runtimeStack: 'DOTNET|2.2'
