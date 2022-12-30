@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxI-POC.FunctionApp1", "MxI-POC.FunctionApp1\MxI-POC.FunctionApp1.csproj", "{807D42CF-EB5D-4E86-904A-2D26D8CE468D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxI-POC.FunctionApp2", "MxI-POC.FunctionApp2\MxI-POC.FunctionApp2.csproj", "{EB2BA862-3D37-4632-9582-A504D454DA78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{807D42CF-EB5D-4E86-904A-2D26D8CE468D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807D42CF-EB5D-4E86-904A-2D26D8CE468D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807D42CF-EB5D-4E86-904A-2D26D8CE468D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807D42CF-EB5D-4E86-904A-2D26D8CE468D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2BA862-3D37-4632-9582-A504D454DA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2BA862-3D37-4632-9582-A504D454DA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2BA862-3D37-4632-9582-A504D454DA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2BA862-3D37-4632-9582-A504D454DA78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,70 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+  
+variables:
+  buildConfiguration: 'Release'
+  SolutionPath: '$(System.DefaultWorkingDirectory)/*.sln'
+
+stages:
+  
+# Build Stage
+- stage: Build
+  displayName: Build and push image to ACR
+
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImage)
+
+    steps:
+      #Dotnet Version
+      - task: UseDotNet@2      
+        displayName: 'Use .NET Core SDK 2.x'
+        inputs:
+          packageType: 'sdk'
+          version: '2.x'
+          installationPath: $(Agent.ToolsDirectory)/dotnet
+
+      #Dotnet restore
+      - task: DotNetCoreCLI@2
+        displayName: Restore NuGet packages           
+        inputs:
+          command: 'restore'
+          projects: '$(SolutionPath)'
+    
+      #Dotnet build
+      - task: DotNetCoreCLI@2
+        displayName: Build solution
+        inputs:
+          command: 'build'
+          projects: '**/*.csproj'
+          arguments: '--configuration $(buildConfiguration) --output $(Build.BinariesDirectory)/publish_output'        
+          
+      #Archive build artifacts
+      - task: ArchiveFiles@2
+        displayName: Archive build artifacts
+        inputs:
+          rootFolderOrFile: '$(Build.BinariesDirectory)/publish_output'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+          replaceExistingArchive: true
+          
+      #Publish build artifacts
+      - task: PublishBuildArtifacts@1
+        displayName: Publish build artifacts
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'app'
+          publishLocation: 'Container'        
+        
+      
