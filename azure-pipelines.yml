@@ -9,7 +9,7 @@ trigger:
 variables:
   vmImage: 'ubuntu-latest'
   location: 'Central US'
-  azureSubscription: 'mxi-test-sc'
+  azureSubscription: 'MxI-subscription'
   resourceGroupName: 'mxi-cicd'
   sitesFunctionAppName: 'MxI-ci-cd-poc'
   appServicePlanName: 'MxI-ci-cd-poc-app-service-plan'
