@@ -99,11 +99,11 @@ stages:
             overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
 
         # Deploy Function App Service          
-       - task: AzureFunctionApp@1
-         inputs:
-           azureSubscription: '$(azureSubscription)'
-           resourceGroupName: '$(resourceGroupName)'
-           appType: 'functionAppLinux'
-           appName: '$(sitesFunctionAppName)'
-           package: '$(System.DefaultWorkingDirectory)/_joecutter.deploy-functions-azureDevOps/app'
-           runtimeStack: 'DOTNET|2.2'      
+        - task: AzureFunctionApp@1
+          inputs:
+            azureSubscription: '$(azureSubscription)'
+            resourceGroupName: '$(resourceGroupName)'
+            appType: 'functionApp'
+            appName: '$(sitesFunctionAppName)'
+            package: '$(System.DefaultWorkingDirectory)/_joecutter.deploy-functions-azureDevOps/app'
+            runtimeStack: 'DOTNET|2.2'
