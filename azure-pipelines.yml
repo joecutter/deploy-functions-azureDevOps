@@ -68,9 +68,9 @@ stages:
       - task: CopyFiles@2
         displayName: 'Copy ARM templates'
         inputs:
-          SourceFolder: ArmTemplates
+          SourceFolder: ArmTemplate
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
-            
+
       #Publish build artifacts
       - task: PublishBuildArtifacts@1
         displayName: Publish build artifacts
