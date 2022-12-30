@@ -14,7 +14,7 @@ variables:
   sitesFunctionAppName: 'MxI-ci-cd-poc'
   appServicePlanName: 'MxIPocAppServicePlan'
   appInsightsName: 'MxIPocAppInsight'
-  functionStorageAccountName: 'MxIPocStorage'
+  functionStorageAccountName: 'MxIPocStorage$(Build.BuildId)'
   envName: 'dev'
   buildConfiguration: 'Release'
   SolutionPath: '$(System.DefaultWorkingDirectory)/*.sln'
