@@ -37,33 +37,30 @@ stages:
         displayName: Restore NuGet packages           
         inputs:
           command: 'restore'
-          projects: '$(SolutionPath)'
+          projects: '**/*.csproj'
     
       #Dotnet build
       - task: DotNetCoreCLI@2
         displayName: Build solution
         inputs:
           command: 'build'
-          projects: |
-            **/MxI-POC.FunctionApp1.csproj
-            **/MxI-POC.FunctionApp2.csproj
-          arguments: '--configuration $(buildConfiguration) --output $(Build.BinariesDirectory)'        
+          projects: '**/*.csproj'
+          # arguments: '--configuration $(buildConfiguration) --output $(Build.BinariesDirectory)'        
           
-      #Archive build artifacts
-      - task: ArchiveFiles@2
-        displayName: Archive build artifacts
+      #Dotnet Publish Code Coverage Report
+      - task: DotNetCoreCLI@2
+        displayName: Publish solution
         inputs:
-          rootFolderOrFile: '$(Build.BinariesDirectory)'
-          includeRootFolder: false
-          archiveType: 'zip'
-          archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-          replaceExistingArchive: true
-          
+          command: 'publish'
+          publishWebProjects: false
+          projects: '**/*.csproj'
+          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish_output'
+  
       #Publish build artifacts
       - task: PublishBuildArtifacts@1
         displayName: Publish build artifacts
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)/publish_output'
           ArtifactName: 'app'
           publishLocation: 'Container'        
         
