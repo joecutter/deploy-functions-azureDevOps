@@ -8,7 +8,7 @@ trigger:
 
 variables:
   location: 'Central US'
-  azureSubscription: 'MxI-subscription'
+  azureSubscription: 'mxi-test-sc'
   resourceGroupName: 'mxi-cicd'
   sitesFunctionAppName: 'MxI-ci-cd-poc'
   appServicePlanName: 'MxI-ci-cd-poc-app-service-plan'
