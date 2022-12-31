@@ -81,21 +81,21 @@ stages:
 
         
 # Release Stage
-- stage: Staging
-  displayName: Deploy image to app service
+# - stage: Staging
+#   displayName: Deploy image to app service
   
-  jobs:
-    - job: Release
-      pool:
-        vmImage: $(vmImage)
+#   jobs:
+#     - job: Release
+#       pool:
+#         vmImage: $(vmImage)
         
-      steps:
+      # steps:
         # Don't clone the repo
-        - checkout: none
+        # - checkout: none
         
         # Download the published application artifact
-        - download: current
-          artifact: app
+        # - download: current
+        #   artifact: app
         
         # Create or update Azure Function App Service
         # - task: AzureResourceGroupDeployment@2
@@ -108,11 +108,11 @@ stages:
         #     overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
 
         # Deploy Function App Service          
-        - task: AzureFunctionApp@1
-          inputs:
-            azureSubscription: '$(azureSubscription)'
-            resourceGroupName: '$(resourceGroupName)'
-            appType: 'functionApp'
-            appName: '$(sitesFunctionAppName)'
-            package: '$(System.DefaultWorkingDirectory)/_joecutter.deploy-functions-azureDevOps/app'
-            runtimeStack: 'DOTNET|2.2'
+        # - task: AzureFunctionApp@1
+        #   inputs:
+        #     azureSubscription: '$(azureSubscription)'
+        #     resourceGroupName: '$(resourceGroupName)'
+        #     appType: 'functionApp'
+        #     appName: '$(sitesFunctionAppName)'
+        #     package: '$(System.DefaultWorkingDirectory)/_joecutter.deploy-functions-azureDevOps/app'
+        #     runtimeStack: 'DOTNET|2.2'
