@@ -34,14 +34,14 @@ stages:
     steps:
 
       # Create or update Azure Function App Service
-      - task: AzureResourceGroupDeployment@2
-        displayName: 'Azure Deployment:Create Azure Function App Service'
-        inputs:
-          azureSubscription: '$(azureSubscription)'
-          resourceGroupName: '$(resourceGroupName)'
-          location: $(location)
-          csmFile: '$(System.DefaultWorkingDirectory)/**/function-app-template.json'
-          overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
+      # - task: AzureResourceGroupDeployment@2
+      #   displayName: 'Azure Deployment:Create Azure Function App Service'
+      #   inputs:
+      #     azureSubscription: '$(azureSubscription)'
+      #     resourceGroupName: '$(resourceGroupName)'
+      #     location: $(location)
+      #     csmFile: '$(System.DefaultWorkingDirectory)/**/function-app-template.json'
+      #     overrideParameters: '-sitesFunctionAppName $(sitesFunctionAppName) -appServicePlanName $(appServicePlanName) -appInsightsName "$(appInsightsName)" -functionStorageAccountName "$(functionStorageAccountName)" -envName $(envName)'
 
       #Dotnet Version
       - task: UseDotNet@2      
@@ -65,7 +65,21 @@ stages:
           command: 'build'
           projects: '**/*.csproj'
           # arguments: '--configuration $(buildConfiguration) --output $(Build.BinariesDirectory)'        
-          
+     
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet test'
+        inputs:
+          command: 'test'
+          projects: '**/Test/*.csproj' # update with your test project directory
+          publishTestResults: true
+          arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish code coverage report'
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+
       #Dotnet Publish Code Coverage Report
       - task: DotNetCoreCLI@2
         displayName: Publish solution
