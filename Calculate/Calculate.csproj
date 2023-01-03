@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Build.Framework">
+        <HintPath>..\..\..\..\..\..\.nuget\packages\microsoft.build.framework\15.3.409\lib\netstandard1.3\Microsoft.Build.Framework.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
