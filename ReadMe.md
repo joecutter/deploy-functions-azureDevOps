@@ -4,7 +4,7 @@
 Deploy several azure function project in c# to azure serverless architecture (Azure function App).
 
 #### Project structure
-![Project structure](./Docs/Screenshot from 2023-01-03 14-37-53.png "Project structure")
+![Project structure](https://github.com/joecutter/deploy-functions-azureDevOps/blob/dev/Docs/Screenshot%20from%202023-01-03%2014-37-53.png "Project structure")
 
 #### Solution
 - Use Azure devops pipeline.
@@ -21,14 +21,16 @@ Deploy several azure function project in c# to azure serverless architecture (Az
   5. Publish Test results
   6. Publish build artifacts 
 
-![Project structure](./Docs/Screenshot from 2023-01-03 14-47-36.png "Project structure")
+![Project structure](https://github.com/joecutter/deploy-functions-azureDevOps/blob/dev/Docs/Screenshot%20from%202023-01-03%2014-47-36.png "Project structure")
 
 #### Release Stage
 Release is categorised into 
 - **Dev release** Use dev branch and is triggered by push event.
-![Project structure](./Docs/Screenshot from 2023-01-03 15-00-30.png "Project structure")
+
+![Project structure](https://github.com/joecutter/deploy-functions-azureDevOps/blob/dev/Docs/Screenshot%20from%202023-01-03%2015-00-30.png "Project structure")
 
 - **Production release** Uses main branch and is triggered by push request event. Also requires manual permission to build.
-![Project structure](./Docs/Screenshot from 2023-01-03 14-50-46.png "Project structure")
+
+![Project structure](https://github.com/joecutter/deploy-functions-azureDevOps/blob/dev/Docs/Screenshot%20from%202023-01-03%2014-50-46.png "Project structure")
 
 
