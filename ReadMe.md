@@ -33,4 +33,9 @@ Release is categorised into
 
 ![Project structure](https://github.com/joecutter/deploy-functions-azureDevOps/blob/dev/Docs/Screenshot%20from%202023-01-03%2014-50-46.png "Project structure")
 
+#### Recommendation
+- Upgrade .NET to the nearest version
+- Upgrade azure function to v4
+- Use feeds for shared modules and customized library, to avoid code duplication and enable code reusability within internal teams
+
 
