@@ -5,9 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.Build.Framework">
-        <HintPath>..\..\..\..\..\..\.nuget\packages\microsoft.build.framework\15.3.409\lib\netstandard1.3\Microsoft.Build.Framework.dll</HintPath>
-      </Reference>
+      <PackageReference Include="Microsoft.Build.Framework" version="15.3.409"/>
     </ItemGroup>
 
 </Project>
